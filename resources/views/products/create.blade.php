@@ -13,6 +13,11 @@
         <h3 class="text-white text-center">Simple Laravel 11 CRUD</h3>
     </div>
     <div class="container">
+        <div class="row justify-content-center mt-4">
+            <div class="col-md-10 d-flex justify-content-end">
+                <a href="{{route('products.index')}}" class="btn btn-dark">Back</a>
+            </div>
+        </div>
         <div class="row d-flex justify-content-center">
             <div class="col-md-10">
                 <div class="card border-0 shadow-lg my-4">

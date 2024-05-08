@@ -13,10 +13,17 @@
         <h3 class="text-white text-center">Simple Laravel 11 CRUD</h3>
     </div>
     <div class="container">
+        <div class="row justify-content-center mt-4">
+            <div class="col-md-10 d-flex justify-content-end">
+                <a href="{{route('products.create')}}" class="btn btn-dark">Create</a>
+            </div>
+        </div>
         <div class="row d-flex justify-content-center">
-            @if(Session:has('success'))
-            <div class="col-md-10">
-                {{Session:get('success')}}
+            @if(Session::has('success'))
+            <div class="col-md-10 mt-4">
+                <div class="alert alert-success">
+                    {{Session::get('success')}}
+                </div>
             </div>
             @endif
             <div class="col-md-10">
