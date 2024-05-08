@@ -19,31 +19,44 @@
                     <div class="card-header bg-dark">
                         <h3 class="text-white">Create a Product</h3>
                     </div>
-                    <div class="card-body">
-                        <div class="mb-3">
-                            <label for="" class="form-label h5">Name</label>
-                            <input type="text" class="form-control form-control-lg" placeholder="Name" name="name">
+                    <form action="{{route('products.store')}}" method="post">
+                        @csrf
+                        <div class="card-body">
+                            <div class="mb-3">
+                                <label for="" class="form-label h5">Name</label>
+                                <input value="{{old('name')}}" type="text" class="@error('name') is-invalid @enderror form-control form-control-lg" placeholder="Name" name="name">
+                                @error('name')
+                                <p class="invalid-feedback">{{$message}}</p>
+                                @enderror
+                            </div>
+                            <div class="mb-3">
+                                <label for="" class="form-label h5">Sku</label>
+                                <input value="{{old('sku')}}" type="text" class="@error('sku') is-invalid @enderror form-control form-control-lg" placeholder="Sku" name="sku">
+                                @error('sku')
+                                <p class="invalid-feedback">{{$message}}</p>
+                                @enderror
+                            </div>
+                            <div class="mb-3">
+                                <label for="" class="form-label h5">Price</label>
+                                <input value="{{old('price')}}" type="text" class="@error('price') is-invalid @enderror form-control form-control-lg" placeholder="Price" name="price">
+                                @error('price')
+                                <p class="invalid-feedback">{{$message}}</p>
+                                @enderror
+                            </div>
+                            <div class="mb-3">
+                                <label for="" class="form-label h5">Description</label>
+                                <textarea placeholder="Description" class="form-control" name="description" cols="10" rows="5">{{old('description')}}</textarea>
+
+                            </div>
+                            <div class="mb-3">
+                                <label for="" class="form-label h5">Image</label>
+                                <input type="file" class="form-control form-control-lg" placeholder="Image" name="image">
+                            </div>
+                            <div class="d-grid">
+                                <button type="submit" class="btn btn-lg btn-primary">Submit</button>
+                            </div>
                         </div>
-                        <div class="mb-3">
-                            <label for="" class="form-label h5">Sku</label>
-                            <input type="text" class="form-control form-control-lg" placeholder="Sku" name="sku">
-                        </div>
-                        <div class="mb-3">
-                            <label for="" class="form-label h5">Price</label>
-                            <input type="text" class="form-control form-control-lg" placeholder="Price" name="price">
-                        </div>
-                        <div class="mb-3">
-                            <label for="" class="form-label h5">Description</label>
-                            <textarea placeholder="Description" class="form-control" name="description" cols="10" rows="5"></textarea>
-                        </div>
-                        <div class="mb-3">
-                            <label for="" class="form-label h5">Image</label>
-                            <input type="file" class="form-control form-control-lg" placeholder="Image" name="image">
-                        </div>
-                        <div class="d-grid">
-                            <button type="submit" class="btn btn-lg btn-primary">Submit</button>
-                        </div>
-                    </div>
+                    </form>
                 </div>
             </div>
         </div>
