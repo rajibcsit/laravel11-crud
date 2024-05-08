@@ -11,7 +11,11 @@ class ProductController extends Controller
     //this method show products page
     public function index()
     {
-        return view('products.list');
+        $products = Product::orderBy('created_at', 'DESC')->get();
+
+        return view('products.list', [
+            'products' => $products
+        ]);
     }
 
     //this method create a product 
@@ -30,6 +34,10 @@ class ProductController extends Controller
 
         ];
 
+        if ($request->image != '') {
+            $rules['image'] = 'image';
+        }
+
         $validator = Validator::make($request->all(), $rules);
 
         if ($validator->fails()) {
@@ -42,6 +50,20 @@ class ProductController extends Controller
         $product->price = $request->price;
         $product->description = $request->description;
         $product->save();
+
+        if ($request->image != '') {
+            //here we will store image
+            $image = $request->image;
+            $ext = $image->getClientOriginalExtension();
+            $imageName = time() . '.' . $ext; //unique image name
+
+            //Save image to products directory
+            $image->move(public_path('uploads/products'), $imageName);
+
+            //Save image  is database
+            $product->image = $imageName;
+            $product->save();
+        }
 
         return redirect()->route('products.index')->with('success', 'Product added successfully');
     }
