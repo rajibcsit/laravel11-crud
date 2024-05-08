@@ -13,7 +13,7 @@ class ProductController extends Controller
     
     //this method create a product 
     public function create(){
-
+        return view('products.create');
     }
 
     //this method store a product 
