@@ -57,9 +57,14 @@
                             <td>{{$product->sku}}</td>
                             <td>{{$product->price}}</td>
                             <td>{{\Carbon\Carbon::parse($product->created_at)->format('d ,M,Y')}}</td>
-                            <td>
+                            <td class="d-flex align-items-center gap-3">
                                 <a href="{{route('products.edit',$product->id)}}" class="btn btn-dark">Edit</a>
-                                <a href="#" class="btn btn-danger">Delete</a>
+                                <form method="post" action="{{route('products.destroy',$product->id)}}">
+                                    @csrf
+                                    @method('delete')
+
+                                    <button onclick=" return confirm('Are your sure delete') " class="btn btn-danger">Delete</button>
+                                </form>
                             </td>
                         </tr>
                         @endforeach
